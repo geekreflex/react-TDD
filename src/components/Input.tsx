@@ -8,7 +8,7 @@ interface InputProps {
 
 export const Input: React.FC<InputProps> = ({ onChange, value, label }) => {
   return (
-    <div>
+    <div className="mb-4">
       <label htmlFor={label} className="block text-gray-900">
         {label}
       </label>
