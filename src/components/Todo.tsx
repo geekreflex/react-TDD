@@ -1,9 +1,12 @@
+import { useModalContext } from '../context/ModalConext';
 import AddUser from './AddUser';
 
 const Todo = () => {
+  const { isAddModalOpen, openAddModal } = useModalContext();
   return (
     <div>
-      <AddUser />
+      <button onClick={openAddModal}>Add New User</button>
+      {isAddModalOpen && <AddUser />}
     </div>
   );
 };
