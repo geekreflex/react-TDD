@@ -1,12 +1,20 @@
+import { IoClose } from 'react-icons/io5';
+
 interface ModalProps {
   children: React.ReactNode;
+  title: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ children }) => {
+const Modal: React.FC<ModalProps> = ({ children, title }) => {
   return (
     <div className="fixed flex justify-center items-center left-0 top-0 right-0 bg-black opacity-60 h-screen px-4 ">
       <div className="w-full bg-white rounded-2xl md:w-1/2">
-        <div className="px-6 py-4  border-b border-gray-200">Header</div>
+        <div className="flex justify-between items-center px-6 py-4  border-b border-gray-200">
+          <span className="text-lg">{title}</span>
+          <button className="hover:bg-gray-200 text-lg p-2 rounded">
+            <IoClose />
+          </button>
+        </div>
         <div className="px-6 py-4">{children}</div>
       </div>
     </div>

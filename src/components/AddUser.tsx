@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Button } from './Button';
 import { Input } from './Input';
 import Modal from './Modal';
 
@@ -9,10 +10,13 @@ const AddUser = () => {
     setName(e.target.value);
   };
   return (
-    <Modal>
+    <Modal title="Add new user">
       <div>
-        <Input value={name} label="Full name" onChange={handleNameChange} />
-        <Input value={name} label="Photo Url" onChange={handleNameChange} />
+        <form>
+          <Input value={name} label="Full name" onChange={handleNameChange} />
+          <Input value={name} label="Photo Url" onChange={handleNameChange} />
+          <Button value="Submit" />
+        </form>
       </div>
     </Modal>
   );
