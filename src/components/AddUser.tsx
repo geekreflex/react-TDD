@@ -4,7 +4,9 @@ import { Button } from './Button';
 import { Input, Textarea } from './Input';
 import Modal from './Modal';
 
-const AddUser = () => {
+interface AddUserProps {}
+
+const AddUser: React.FC<AddUserProps> = () => {
   const { closeAddModal } = useModalContext();
   const [name, setName] = useState<string>('');
   const [photoUrl, setPhotoUrl] = useState<string>('');

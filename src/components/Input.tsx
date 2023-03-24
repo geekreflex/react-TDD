@@ -30,7 +30,7 @@ export const Textarea: React.FC<InputProps> = ({ onChange, value, label }) => {
         id={label}
         value={value}
         onChange={onChange}
-        className="border border-gray-300 block rounded-lg p-2 w-full outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500"
+        className="border border-gray-300 block rounded-lg p-2 w-full outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 h-500 max-h-300"
       />
     </div>
   );
