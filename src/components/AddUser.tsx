@@ -45,16 +45,23 @@ const AddUser: React.FC<AddUserProps> = () => {
       <div>
         <form>
           <div>
-            <Input value={name} label="Full Name" onChange={handleNameChange} />
+            <Input
+              value={name}
+              label="Full Name"
+              onChange={handleNameChange}
+              id="fullname"
+            />
             <Input
               value={photoUrl}
               label="Photo Url"
               onChange={handlePhotoUrlChange}
+              id="photourl"
             />
             <Textarea
               value={description}
               label="Description"
               onChange={handleDescriptionChange}
+              id="description"
             />
           </div>
           <div className="flex justify-end">
