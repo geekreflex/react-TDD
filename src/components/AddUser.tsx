@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useModalContext } from '../context/ModalConext';
+import { useUserContext } from '../context/UserContext';
 import { Button } from './Button';
 import { Input, Textarea } from './Input';
 import Modal from './Modal';
@@ -11,6 +12,8 @@ const AddUser: React.FC<AddUserProps> = () => {
   const [name, setName] = useState<string>('');
   const [photoUrl, setPhotoUrl] = useState<string>('');
   const [description, setDescription] = useState<string>('');
+
+  const { addUser } = useUserContext();
 
   const handleNameChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,12 +35,15 @@ const AddUser: React.FC<AddUserProps> = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+    if (name === '' && photoUrl === '' && description !== '') {
+      return;
+    }
     const payload = {
       name,
       photoUrl,
       description,
     };
-    console.log(payload);
+    addUser(payload);
   };
 
   return (

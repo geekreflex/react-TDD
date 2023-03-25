@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import React, {
   createContext,
   useContext,
@@ -15,7 +16,7 @@ type User = {
 
 type UserContextType = {
   users: User[];
-  addUser: (user: User) => void;
+  addUser: (user: Omit<User, 'id'>) => void;
   getUser: (id: string) => User | undefined;
   deleteUser: (id: string) => void;
   updateUser: (user: User) => void;
@@ -33,7 +34,7 @@ type UserProviderProps = {
   children: React.ReactNode;
 };
 
-const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
+export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   const [users, setUsers] = useState<User[]>([]);
 
   useEffect(() => {
@@ -48,8 +49,9 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
   }, []);
 
   const addUser = useCallback(
-    (user: User) => {
-      const newUsers = [...users, user];
+    (user: Omit<User, 'id'>) => {
+      const newId = nanoid();
+      const newUsers = [...users, { ...user, id: newId }];
       setUsers(newUsers);
       persistUsers(newUsers);
     },
@@ -97,3 +99,5 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
   );
 };
+
+export const useUserContext = () => useContext(UserContext);
