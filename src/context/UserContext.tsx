@@ -6,13 +6,7 @@ import React, {
   useEffect,
   useCallback,
 } from 'react';
-
-type User = {
-  id: string;
-  name: string;
-  photoUrl: string;
-  description: string;
-};
+import { User } from '../types/user';
 
 type UserContextType = {
   users: User[];

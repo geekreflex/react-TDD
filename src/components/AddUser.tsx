@@ -10,15 +10,29 @@ interface AddUserProps {}
 const AddUser: React.FC<AddUserProps> = () => {
   const { closeAddModal } = useModalContext();
   const [name, setName] = useState<string>('');
+  const [headline, setHeadline] = useState<string>('');
   const [photoUrl, setPhotoUrl] = useState<string>('');
   const [description, setDescription] = useState<string>('');
 
   const { addUser } = useUserContext();
 
+  const resetFrom = () => {
+    setName('');
+    setHeadline('');
+    setPhotoUrl('');
+    setDescription('');
+  };
+
   const handleNameChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setName(e.target.value);
+  };
+
+  const handleHeadlineChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setHeadline(e.target.value);
   };
 
   const handlePhotoUrlChange = (
@@ -35,15 +49,22 @@ const AddUser: React.FC<AddUserProps> = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    if (name === '' && photoUrl === '' && description !== '') {
+    if (
+      name === '' &&
+      photoUrl === '' &&
+      description !== '' &&
+      headline !== ''
+    ) {
       return;
     }
     const payload = {
       name,
+      headline,
       photoUrl,
       description,
     };
     addUser(payload);
+    resetFrom();
   };
 
   return (
@@ -56,6 +77,12 @@ const AddUser: React.FC<AddUserProps> = () => {
               label="Full Name"
               onChange={handleNameChange}
               id="fullname"
+            />
+            <Input
+              value={headline}
+              label="Headline"
+              onChange={handleHeadlineChange}
+              id="headline"
             />
             <Input
               value={photoUrl}
